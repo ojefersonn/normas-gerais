@@ -1,4 +1,6 @@
-# 📚 Acervo de Normas — Licitações e Contratações Públicas
+# 📚 Normas Gerais
+
+_Acervo pesquisável de normas de licitações, contratos e gestão administrativa federal._
 
 Acervo em Markdown com o **texto integral** das normas sobre licitações, contratos e gestão
 administrativa federal, coletadas do [Portal de Compras do Governo Federal](https://www.gov.br/compras/pt-br)
@@ -22,9 +24,11 @@ artigos, incisos e parágrafos, não apenas as ementas.
 
 - **No GitHub:** tecle `/` (ou use a caixa de busca), digite os termos e restrinja ao repositório.
   A busca varre o texto integral de todas as normas. Ex.: `pesquisa de preços sobrepreço`.
-- **No site de busca:** abra o [buscador do acervo](https://ojefersonn.github.io/claude/) para
+- **No site de busca:** abra o [buscador do acervo](https://ojefersonn.github.io/normas-gerais/) para
   busca instantânea com filtros por tema e tipo (requer GitHub Pages ativado).
 - **Clonado localmente:** `grep -ril "termo" normas/` ou a busca da sua IDE.
+- **Perguntando em linguagem natural:** use o [assistente com IA](assistente/README.md), que
+  responde com citações de norma e artigo (requer chave de API da Anthropic).
 
 ## 🗂️ Estrutura
 
@@ -34,6 +38,7 @@ normas/                  ← texto integral (1 arquivo .md por norma)
   resolucoes/  orientacoes/  pareceres/  medidas-provisorias/
 indices/                 ← índices de navegação por tema e por tipo
 docs/                    ← site estático de busca (GitHub Pages)
+assistente/              ← assistente de consulta com IA (protótipo RAG)
 ferramentas/             ← scripts para atualizar o acervo
 dados/                   ← catálogo estruturado (JSON)
 ```
