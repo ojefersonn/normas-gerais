@@ -5,7 +5,7 @@ import os
 import re
 
 REPO = "/home/user/Claude"
-GITHUB_BLOB = "https://github.com/ojefersonn/claude/blob/main/"
+GITHUB_BLOB = "https://github.com/ojefersonn/normas-gerais/blob/main/"
 
 
 def carregar_normas():
@@ -38,7 +38,7 @@ HTML = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Busca de Normas — Licitações e Contratações Públicas</title>
+<title>Normas Gerais — Busca de Normas de Licitações e Contratações</title>
 <style>
 :root{
   --bg:#f6f7f9; --card:#ffffff; --texto:#1a1d21; --sub:#5b6570; --borda:#dde2e8;
@@ -81,7 +81,7 @@ mark{background:var(--realce);color:var(--realce-t);border-radius:3px;padding:0 
 </head>
 <body>
 <div class="wrap">
-  <h1>📚 Busca de Normas — Licitações e Contratações Públicas</h1>
+  <h1>📚 Normas Gerais</h1>
   <div class="sub">__N__ normas com texto integral pesquisável · capturadas do Portal de Compras do Governo Federal e fontes oficiais · atualizado em __DATA__</div>
   <div class="busca">
     <input type="search" id="q" placeholder="Busque no texto integral: ex. pesquisa de preços, garantia contratual, art. 75…" autofocus>
@@ -156,7 +156,7 @@ function render(){
     </div>`).join('')+(res.length>LIM?`<div class="vazio">… e mais ${res.length-LIM}. Refine a busca.</div>`:'')
     :'<div class="vazio">Nenhuma norma encontrada. Tente outros termos ou remova filtros.</div>';
 }
-const GH='https://github.com/ojefersonn/claude/blob/main/';
+const GH='https://github.com/ojefersonn/normas-gerais/blob/main/';
 let deb;
 $('q').addEventListener('input',()=>{clearTimeout(deb);deb=setTimeout(render,150);});
 for(const id of ['ftema','ftipo','fsit'])$(id).addEventListener('change',render);
