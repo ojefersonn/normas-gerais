@@ -220,10 +220,36 @@ def perguntar(client, pergunta, historico):
     return texto, final.usage
 
 
+ARQUIVO_CHAVE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chave.txt")
+
+
+def obter_chave():
+    """Obtém a chave de API: variável de ambiente, arquivo local ou pergunta ao usuário."""
+    chave = (os.environ.get("ANTHROPIC_API_KEY") or "").strip()
+    if chave:
+        return chave
+    if os.path.exists(ARQUIVO_CHAVE):
+        chave = open(ARQUIVO_CHAVE, encoding="utf-8").read().strip()
+        if chave:
+            return chave
+    print("Primeira execução: preciso da sua chave de API da Anthropic.")
+    print("Crie uma em https://platform.claude.com/ (menu API Keys) e cole aqui.")
+    print("(No Windows, cole com o botão direito do mouse ou Ctrl+V.)\n")
+    while True:
+        chave = input("Chave (começa com sk-ant-): ").strip().strip('"').strip("'")
+        if chave.startswith("sk-ant-"):
+            break
+        print("Isso não parece uma chave válida — ela começa com sk-ant-. Tente de novo.")
+    resposta = input("Salvar a chave neste computador para as próximas vezes? [s/n] ").strip().lower()
+    if resposta.startswith("s"):
+        with open(ARQUIVO_CHAVE, "w", encoding="utf-8") as f:
+            f.write(chave + "\n")
+        print(f"Salva em {ARQUIVO_CHAVE} — esse arquivo fica fora do controle de versão (não sobe para o GitHub).")
+    return chave
+
+
 def main():
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        sys.exit("Defina a variável ANTHROPIC_API_KEY (crie uma chave em https://platform.claude.com/).")
-    client = anthropic.Anthropic()
+    client = anthropic.Anthropic(api_key=obter_chave())
     print(f"📚 Normas Gerais — assistente de consulta ({len(TRECHOS)} trechos de {_N and len({t['arquivo'] for t in TRECHOS})} normas)")
     historico = []
     if len(sys.argv) > 1:
