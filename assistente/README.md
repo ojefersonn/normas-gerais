@@ -17,14 +17,17 @@ local, sobre os arquivos `normas/*.md`, fatiados por artigo.
 ## Como usar
 
 ```bash
-export ANTHROPIC_API_KEY="sua-chave"
-
-# pergunta única
-python3 assistente/assistente.py "Posso contratar por dispensa de licitação até qual valor?"
-
 # modo interativo (mantém o contexto entre perguntas)
 python3 assistente/assistente.py
+
+# ou pergunta única
+python3 assistente/assistente.py "Posso contratar por dispensa de licitação até qual valor?"
 ```
+
+Na **primeira execução** o assistente pede a chave de API e oferece salvá-la em
+`assistente/chave.txt` (arquivo local, fora do controle de versão) — nas
+próximas execuções ele a encontra sozinho. Alternativamente, a variável de
+ambiente `ANTHROPIC_API_KEY`, se definida, tem prioridade.
 
 Exemplo de saída:
 
